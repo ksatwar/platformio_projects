@@ -6,12 +6,19 @@ Adafruit_MCP23X17 mcp;
 #define RELAY_2 1
 #define RELAY_3 2
 #define RELAY_4 3
+#define PIN_MIN 1
+#define PIN_MAX 4
+#define PMAXMIN (PIN_MAX-PIN_MIN) //max pin - min pin
+#define CMD_MIN 0
+#define CMD_MAX 2
+#define CMAXMIN (CMD_MAX-CMD_MIN) //cmd max - cmd min
+
 enum command:uint8_t
 {off,on,toggle};
-uint8_t toggleFlag=0;
+//uint8_t toggleFlag=0;
 int pinStatus=0;
 int readPinStatus=0;
-char c=0;
+//char c=0;
 int hex2int(char ch)
 {
     if (ch >= '0' && ch <= '9')
@@ -21,6 +28,10 @@ int hex2int(char ch)
     if (ch >= 'a' && ch <= 'f')
         return ch - 'a' + 10;
     return -1;
+}
+int var_bound(uint8_t pin,uint8_t cmd)
+{
+  if(pin)
 }
 void I2CBeginCustom(){
 Wire.begin(SDA_8266,SCL_8266);
@@ -84,7 +95,7 @@ void writeData(int pinStatus)
 bool pinActuate(uint8_t pin,uint8_t cmd)
 {   
   pin-=1;
-  if pin    
+  if ((unsigned)(pin-PIN_MIN)<PMAXMIN
       if (cmd==off&&(mcp.digitalRead(pin)==HIGH))
       {
           mcp.digitalWrite(pin,LOW);
