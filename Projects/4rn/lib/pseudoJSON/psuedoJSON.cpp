@@ -1,13 +1,6 @@
 #include "pseudoJSON.h"
-bool cmdActuate(char cmd){
-    bool retval=true;
-    switch (cmd)
-    {
-        case 'r':
-        ESP.restart();
-        break;
-        default:
-        retval=false;
+void pseudoJSON(char c){
+    if (c=='p'){
+        
     }
-    return retval;
 }

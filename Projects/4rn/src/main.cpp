@@ -56,7 +56,9 @@ bool mqttPayloadHandler(char* topic,char *payload,size_t len){
     12 22 32 42
     */
     if(retval){
-    pinActuate((result/10),result%10);
+      if(pinActuate((result/10),result%10)){
+        pseudoJson('p');
+      }   
     }
   }
 
