@@ -6,7 +6,6 @@
 #include"pinActuate.h"
 #include"cmdActuate.h"
 #include"pseudoJSON.h"
-//cmdActuate
 
 #define MQTT_HOST "broker.hivemq.com"
 #define MQTT_PORT 1883
@@ -57,7 +56,7 @@ bool mqttPayloadHandler(char* topic,char *payload,size_t len){
     12 22 32 42
     */
     if(retval){
-    pinActuate(result/10),result%10);
+    pinActuate((result/10),result%10);
     }
   }
 
