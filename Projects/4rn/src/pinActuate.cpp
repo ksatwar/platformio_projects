@@ -29,9 +29,11 @@ int hex2int(char ch)
         return ch - 'a' + 10;
     return -1;
 }
-int var_bound(uint8_t pin,uint8_t cmd)
+bool var_bound(uint8_t pin,uint8_t cmd)
 {
-  if(pin)
+  if(((unsigned)(pin-PIN_MIN)<PMAXMIN+1)&&((unsigned)(cmd-CMD_MIN)<CMAXMIN+1))
+  return true;
+  return false;
 }
 void I2CBeginCustom(){
 Wire.begin(SDA_8266,SCL_8266);
@@ -94,8 +96,8 @@ void writeData(int pinStatus)
 }
 bool pinActuate(uint8_t pin,uint8_t cmd)
 {   
-  pin-=1;
-  if ((unsigned)(pin-PIN_MIN)<PMAXMIN
+  if (var_bound(pin,cmd)){
+    pin-=1;
       if (cmd==off&&(mcp.digitalRead(pin)==HIGH))
       {
           mcp.digitalWrite(pin,LOW);
@@ -135,6 +137,7 @@ bool pinActuate(uint8_t pin,uint8_t cmd)
           // readData();
           return true;
       }
+  }
       else
       return false;
 }
