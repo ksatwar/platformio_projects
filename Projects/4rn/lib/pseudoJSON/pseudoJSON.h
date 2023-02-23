@@ -2,5 +2,5 @@
 #define PSEUDO_JSON_H
 #include<Arduino.h>
 #include<pinActuate.h>
-void pseudoJson(char c);
+char* pseudoJson(char c);
 #endif

@@ -1,6 +1,9 @@
 #include "pseudoJSON.h"
-void pseudoJSON(char c){
+char* pseudoJSON(char c){
+    char* JSONstring;
     if (c=='p'){
-        
+         
     }
+    return JSONstring;
 }
+//{"state":[0,1,1,0]}
